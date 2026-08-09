@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Typography ────────────────────────────────────────────────
+     font-sans  → Inter          (all body text, UI, labels)
+     font-display → Plus Jakarta Sans  (headings, used via font-display class)  */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(222 20% 15%);
+
+  --color-primary: hsl(222 47% 25%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-primary-glow: hsl(222 60% 40%);
+
+  --color-secondary: hsl(210 20% 96%);
+  --color-secondary-foreground: hsl(222 20% 15%);
+
+  --color-accent: hsl(43 96% 56%);
+  --color-accent-foreground: hsl(20 40% 15%);
+  --color-accent-glow: hsl(43 96% 65%);
+
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222 20% 15%);
+
+  --color-muted: hsl(210 20% 96%);
+  --color-muted-foreground: hsl(215 15% 45%);
+
+  --color-border: hsl(214 15% 90%);
+  --color-ring: hsl(222 47% 25%);
+
+  --color-accent: hsl(130 50% 42%);          
+  --color-accent-foreground: hsl(0 0% 100%); 
+  --color-accent-glow: hsl(130 55% 50%);     
+}
+
+
+:root {
+  --primary: 222 47% 25%;
+  --primary-glow: 222 60% 40%;
+  --accent: 43 96% 56%;
+}
+
+/* ── Global font defaults ──────────────────────────────────────
+   Inter is set on html/body so every element in every page and
+   every future component inherits it automatically.
+   Plus Jakarta Sans is applied via the font-display utility
+   class (already used on all headings in Header & Hero).        */
+html,
+body {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Hero section background — warm off-white with subtle depth ── */
+.bg-hero {
+  background-color: hsl(210 20% 97%);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(54, 161, 71, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 95% 50%, rgba(34, 60, 120, 0.05) 0%, transparent 60%);
+}
+
+/* ── Glass capsule nav background ─────────────────────────────── */
+.glass-capsule {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* ── CTA button shadow ─────────────────────────────────────────── */
+.shadow-cta {
+  box-shadow: 0 4px 18px rgba(54, 161, 71, 0.35);
+}
+
+/* ── Card / image capsule shadow ──────────────────────────────── */
+.shadow-capsule {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10), 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Trust badge soft shadow ───────────────────────────────────── */
+.shadow-soft {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── CTA button pulse — whole button gently scales + glows ──────
+   Matches the inspected reference: the entire .cta-pulse element
+   breathes with a soft scale and shadow bloom, not just the icon.  */
+@keyframes cta-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 18px rgba(54, 161, 71, 0.35);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 6px 28px rgba(54, 161, 71, 0.55);
+  }
+}
+
+.cta-pulse {
+  animation: cta-pulse 2.4s ease-in-out infinite;
+}
+
+/* ── Floating cards — gentle vertical drift ─────────────────────
+   The two overlay cards (Families Served + 100% Donation Policy)
+   rise and fall softly on a continuous loop.                      */
+@keyframes float-soft {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-soft {
+  animation: float-soft 4s ease-in-out infinite;
+}
+
+/* ── Fade-up entrance — hero content slides in on load ──────────*/
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out both;
+}
