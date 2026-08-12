@@ -33,7 +33,7 @@ const SIDE_CARDS = [
 export default function FamilyFoodPack() {
     return (
         <main className="flex-1">
-             <Header />
+            <Header />
             {/* ===== Hero ===== */}
             <section className="relative overflow-hidden max-w-full bg-hero pt-24 sm:pt-28 pb-12 sm:pb-16">
                 {/*
@@ -80,11 +80,11 @@ export default function FamilyFoodPack() {
                     <div className="grid w-full max-w-full gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-start">
                         {/* Main card */}
                         <div className="rounded-[32px] border border-border/60 bg-card p-6 sm:p-7 shadow-capsule">
-                            <div className="mb-7 overflow-hidden rounded-[28px] border border-border/60 shadow-soft">
+                            <div className="mb-7 overflow-hidden rounded-[28px] border border-border/60 bg-secondary/30 shadow-soft">
                                 <img
                                     src={foodPackImg}
                                     alt="Family Food Pack"
-                                    className="h-[320px] w-full object-cover transition-transform duration-700 hover:scale-105"
+                                    className="w-full h-auto max-h-[480px] object-contain transition-transform duration-700 hover:scale-105"
                                 />
                             </div>
 
@@ -146,7 +146,7 @@ export default function FamilyFoodPack() {
                     </div>
                 </div>
             </section>
-             <Footer />
+            <Footer />
         </main>
     );
 }

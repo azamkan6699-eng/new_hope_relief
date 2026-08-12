@@ -13,6 +13,9 @@ import SeasonalGiving from './pages/SeasonalGiving';
 import Impact from './pages/Impact';
 import News from './pages/News';
 import Contact from './pages/Contact';
+import SponsorATeacher from './pages/SponsorATeacher';
+import SponsorAWidow from './pages/SponsorAWidow';
+import SponsorAStudent from './pages/SponsorAStudent';
 
 
 function App() {
@@ -28,6 +31,9 @@ function App() {
                 <Route path="/programs/education" element={<Education />} />
                 <Route path="/programs/emergency-relief" element={<EmergencyRelief />} />
                 <Route path="/programs/medical-aid" element={<MedicalAid />} />
+                <Route path="/programs/sponsor-a-teacher" element={<SponsorATeacher />} />
+                <Route path="/programs/sponsor-a-student" element={<SponsorAStudent />} />
+                <Route path="/programs/sponsor-a-widow" element={<SponsorAWidow />} />
                 <Route path="/programs/seasonal-giving" element={<SeasonalGiving />} />
                 <Route path="/impact" element={<Impact />} />
                 <Route path="/news" element={<News />} />

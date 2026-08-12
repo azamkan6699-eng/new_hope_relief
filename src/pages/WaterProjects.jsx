@@ -79,11 +79,11 @@ export default function WaterProjects() {
                     <div className="grid w-full max-w-full gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-start">
                         {/* Main card */}
                         <div className="rounded-[32px] border border-border/60 bg-card p-6 sm:p-7 shadow-capsule">
-                            <div className="mb-7 overflow-hidden rounded-[28px] border border-border/60 shadow-soft">
+                            <div className="mb-7 overflow-hidden rounded-[28px] border border-border/60 bg-secondary/30 shadow-soft">
                                 <img
                                     src={waterProjectImg}
                                     alt="Water Well"
-                                    className="h-[320px] w-full object-cover transition-transform duration-700 hover:scale-105"
+                                    className="w-full h-auto max-h-[480px] object-contain transition-transform duration-700 hover:scale-105"
                                 />
                             </div>
 
@@ -146,7 +146,7 @@ export default function WaterProjects() {
                 </div>
             </section>
             <Footer />
-              <Footer />
+            <Footer />
         </main>
     );
 }

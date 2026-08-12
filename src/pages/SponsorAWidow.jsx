@@ -1,36 +1,35 @@
-import { CircleCheck, Stethoscope, Heart, ShieldCheck } from 'lucide-react';
+import { CircleCheck, HandCoins, Briefcase, Users } from 'lucide-react';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
-import medicalAidImg from '../assets/MedicalPage.png'
+import sponsorWidowImg from "../assets/sponsorWidowImg.png";
 
 // Update this to wherever the photo lives in your project
 
-
 const CHECKLIST = [
-    'Medical support for vulnerable families',
-    'Help with treatment, checkups, and essential medicine',
-    'Emergency healthcare assistance for urgent needs',
+    'Provide monthly financial assistance',
+    'Support livelihood and skill development',
+    'Offer hope, dignity, and a better tomorrow',
 ];
 
 const SIDE_CARDS = [
     {
-        title: 'Health Checkups',
-        description: 'Helping vulnerable families access basic medical assessments and care.',
-        Icon: Stethoscope,
+        title: 'Financial Assistance',
+        description: 'Providing essential financial support to help widows meet their families\u2019 basic needs.',
+        Icon: HandCoins,
     },
     {
-        title: 'Care & Medicine',
-        description: 'Supporting treatment, medicines, and essential healthcare needs.',
-        Icon: Heart,
+        title: 'Livelihood Support',
+        description: 'Creating opportunities for skills development and sustainable income.',
+        Icon: Briefcase,
     },
     {
-        title: 'Emergency Support',
-        description: 'Providing urgent medical assistance during difficult situations.',
-        Icon: ShieldCheck,
+        title: 'Family Support',
+        description: 'Helping widows build secure, dignified, and independent lives for their families.',
+        Icon: Users,
     },
 ];
 
-export default function MedicalAid() {
+export default function SponsorAWidow() {
     return (
         <main className="flex-1">
             <Header />
@@ -65,11 +64,11 @@ export default function MedicalAid() {
                     </span>
 
                     <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-primary text-balance">
-                        Medical Aid
+                        Sponsor a Widow
                     </h1>
 
                     <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
-                        Helping vulnerable families access healthcare, medicine, and urgent care.
+                        Extend Compassion. Change a Life.
                     </p>
                 </div>
             </section>
@@ -82,24 +81,30 @@ export default function MedicalAid() {
                         <div className="rounded-[32px] border border-border/60 bg-card p-6 sm:p-7 shadow-capsule">
                             <div className="mb-7 overflow-hidden rounded-[28px] border border-border/60 bg-secondary/30 shadow-soft">
                                 <img
-                                    src={medicalAidImg}
-                                    alt="Medical Aid"
+                                    src={sponsorWidowImg}
+                                    alt="Sponsor a Widow"
                                     className="w-full h-auto max-h-[480px] object-contain transition-transform duration-700 hover:scale-105"
                                 />
                             </div>
 
+                            {/*
+                                NOTE: no short pill-badge label ("Care & Medicine"-style)
+                                was provided for this page, so I've used a placeholder
+                                that matches the tone of the others. Swap the text below
+                                if you have a specific label in mind.
+                            */}
                             <span className="inline-flex items-center rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-primary">
-                                Care &amp; Medicine
+                                Widow Support
                             </span>
 
                             <h2 className="mt-5 font-display text-3xl sm:text-4xl font-semibold leading-tight text-primary">
-                                Support access to essential medical care
+                                Your kindness today can bring stability and hope to a family in need
                             </h2>
 
                             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                                Our Medical Aid program supports vulnerable families with access to treatment,
-                                medicine, health checkups, and urgent medical care. This program helps reduce
-                                hardship for families who cannot afford essential healthcare.
+                                Many widows face immense challenges in providing for their families. Your support
+                                brings relief, dignity, and hope by helping them meet their basic needs and build
+                                a better future for themselves and their children.
                             </p>
 
                             <div className="mt-7 space-y-3">

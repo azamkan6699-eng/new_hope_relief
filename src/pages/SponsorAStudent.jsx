@@ -1,36 +1,35 @@
-import { CircleCheck, Stethoscope, Heart, ShieldCheck } from 'lucide-react';
+import { CircleCheck, GraduationCap, BookOpen, Users } from 'lucide-react';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
-import medicalAidImg from '../assets/MedicalPage.png'
+import sponsorStudentImg from '../assets/SponsorStudent.png'
 
 // Update this to wherever the photo lives in your project
 
-
 const CHECKLIST = [
-    'Medical support for vulnerable families',
-    'Help with treatment, checkups, and essential medicine',
-    'Emergency healthcare assistance for urgent needs',
+    'Cover tuition fees and educational expenses',
+    'Provide books, uniforms, and learning supplies',
+    'Help students achieve their academic goals',
 ];
 
 const SIDE_CARDS = [
     {
-        title: 'Health Checkups',
-        description: 'Helping vulnerable families access basic medical assessments and care.',
-        Icon: Stethoscope,
+        title: 'Educational Support',
+        description: 'Helping students access quality education and continue their studies.',
+        Icon: GraduationCap,
     },
     {
-        title: 'Care & Medicine',
-        description: 'Supporting treatment, medicines, and essential healthcare needs.',
-        Icon: Heart,
+        title: 'Learning Materials',
+        description: 'Providing essential books, uniforms, and supplies for learning.',
+        Icon: BookOpen,
     },
     {
-        title: 'Emergency Support',
-        description: 'Providing urgent medical assistance during difficult situations.',
-        Icon: ShieldCheck,
+        title: 'Student Development',
+        description: 'Supporting students in achieving their academic goals and building a brighter future.',
+        Icon: Users,
     },
 ];
 
-export default function MedicalAid() {
+export default function SponsorAStudent() {
     return (
         <main className="flex-1">
             <Header />
@@ -65,11 +64,11 @@ export default function MedicalAid() {
                     </span>
 
                     <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-primary text-balance">
-                        Medical Aid
+                        Sponsor a Student
                     </h1>
 
                     <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
-                        Helping vulnerable families access healthcare, medicine, and urgent care.
+                        Invest in Education. Build a Better Tomorrow.
                     </p>
                 </div>
             </section>
@@ -80,26 +79,32 @@ export default function MedicalAid() {
                     <div className="grid w-full max-w-full gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-start">
                         {/* Main card */}
                         <div className="rounded-[32px] border border-border/60 bg-card p-6 sm:p-7 shadow-capsule">
-                            <div className="mb-7 overflow-hidden rounded-[28px] border border-border/60 bg-secondary/30 shadow-soft">
+                            <div className="mb-7 overflow-hidden rounded-[28px] border border-border/60 shadow-soft">
                                 <img
-                                    src={medicalAidImg}
-                                    alt="Medical Aid"
-                                    className="w-full h-auto max-h-[480px] object-contain transition-transform duration-700 hover:scale-105"
+                                    src={sponsorStudentImg}
+                                    alt="Sponsor a Student"
+                                    className="h-[320px] w-full object-cover transition-transform duration-700 hover:scale-105"
                                 />
                             </div>
 
+                            {/*
+                                NOTE: no short pill-badge label ("Care & Medicine"-style)
+                                was provided for this page, so I've used a placeholder
+                                that matches the tone of the others. Swap the text below
+                                if you have a specific label in mind.
+                            */}
                             <span className="inline-flex items-center rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-primary">
-                                Care &amp; Medicine
+                                Student Support
                             </span>
 
                             <h2 className="mt-5 font-display text-3xl sm:text-4xl font-semibold leading-tight text-primary">
-                                Support access to essential medical care
+                                Your support today can shape a brighter future for a student
                             </h2>
 
                             <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                                Our Medical Aid program supports vulnerable families with access to treatment,
-                                medicine, health checkups, and urgent medical care. This program helps reduce
-                                hardship for families who cannot afford essential healthcare.
+                                Education has the power to break the cycle of poverty and create lasting change.
+                                Your sponsorship helps students continue their studies, achieve their dreams, and
+                                become confident, contributing members of society.
                             </p>
 
                             <div className="mt-7 space-y-3">
