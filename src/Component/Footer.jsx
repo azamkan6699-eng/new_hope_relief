@@ -13,9 +13,9 @@ const NAV_LINKS = [
 ];
 
 const CONTACT_ITEMS = [
-    { icon: Mail, content: 'hello@newhoperelief.org', href: 'mailto:hello@newhoperelief.org' },
+    { icon: Mail, content: 'Newhoperelief@gmail.com', href: 'mailto:hello@newhoperelief.org' },
     { icon: Phone, content: '+44 (0) 123 456 7890', href: 'tel:+441234567890' },
-    { icon: MapPin, content: '123 Hope Street, London, UK', href: null },
+    { icon: MapPin, content: 'Burnley, Lancashire UK', href: null },
 ];
 
 // Custom-drawn social icons (not lucide) — preserved exactly from the inspected markup.
@@ -33,7 +33,7 @@ const SOCIAL_LINKS = [
     },
     {
         label: 'Facebook',
-        href: '#',
+        href: 'https://www.facebook.com/share/18HTSp2PSN/?mibextid=wwXIfr',
         icon: <path d="M28 10 h6 v8 h-6 c-2 0-3 1-3 3 v5 h9 l-1 8 h-8 V42 H17 V34 h-5 v-8 h5 v-6 a8 8 0 0 1 8-8 z" />,
     },
     {
