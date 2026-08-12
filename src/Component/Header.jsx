@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
     Compass,
     HeartHandshake,
@@ -102,6 +103,14 @@ export default function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [mobileAccordion, setMobileAccordion] = useState(null);
 
+    // Called by every navigational Link so the mega menu / mobile menu
+    // closes immediately on click, instead of waiting for onMouseLeave.
+    const closeAllMenus = () => {
+        setOpenDesktop(null);
+        setMobileOpen(false);
+        setMobileAccordion(null);
+    };
+
     return (
         <header className="fixed inset-x-0 top-0 z-50 transition-all duration-500 pt-4 sm:pt-6">
             <nav
@@ -109,7 +118,7 @@ export default function Header() {
                 className="shadow-2xl mx-auto flex w-[calc(100%-1.5rem)] max-w-6xl items-center justify-between gap-4 rounded-[20px] glass-capsule px-4 py-2 sm:px-4 sm:py-2.5 transition-all duration-500"
             >
                 {/* Logo */}
-                <a className="flex items-center gap-2 shrink-0" aria-label="New Hope Relief home" href="/">
+                <Link className="flex items-center gap-2 shrink-0" aria-label="New Hope Relief home" to="/" onClick={closeAllMenus}>
                     <img
                         src={logoImg}
                         alt="New Hope Relief"
@@ -117,7 +126,7 @@ export default function Header() {
                         width="180"
                         height="40"
                     />
-                </a>
+                </Link>
 
                 {/* Desktop nav */}
                 <div className="hidden lg:flex items-center">
@@ -150,17 +159,18 @@ export default function Header() {
                                     */}
                                     <div
                                         className={`absolute left-1/2 top-full z-40 pt-3 w-[calc(100vw-2rem)] max-w-[680px] -translate-x-1/2 origin-top transition-all duration-200 ${openDesktop === item.key
-                                                ? 'opacity-100 translate-y-0 pointer-events-auto'
-                                                : 'opacity-0 -translate-y-2 pointer-events-none'
+                                            ? 'opacity-100 translate-y-0 pointer-events-auto'
+                                            : 'opacity-0 -translate-y-2 pointer-events-none'
                                             }`}
                                         role="menu"
                                         aria-label={`${item.label} menu`}
                                     >
                                         <div className="glass-capsule overflow-hidden rounded-[24px] p-3">
                                             <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
-                                                <a
+                                                <Link
                                                     className="group relative col-span-1 sm:col-span-2 overflow-hidden rounded-[18px] p-5 text-primary-foreground transition-transform hover:-translate-y-0.5"
-                                                    href={item.href}
+                                                    to={item.href}
+                                                    onClick={closeAllMenus}
                                                     style={{
                                                         /*
                                                           FIX 2: reference the @theme color variables
@@ -184,14 +194,15 @@ export default function Header() {
                                                             Explore →
                                                         </span>
                                                     </div>
-                                                </a>
+                                                </Link>
                                                 <ul className="col-span-1 sm:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-1.5 min-w-0">
                                                     {item.links.map((link) => (
                                                         <li key={link.label}>
-                                                            <a
+                                                            <Link
                                                                 className="group flex items-start gap-3 rounded-2xl p-3 transition-colors hover:bg-secondary/80"
                                                                 role="menuitem"
-                                                                href={link.href}
+                                                                to={link.href}
+                                                                onClick={closeAllMenus}
                                                             >
                                                                 <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                                                                     <link.icon className="h-4.5 w-4.5" aria-hidden="true" />
@@ -200,7 +211,7 @@ export default function Header() {
                                                                     <div className="text-sm font-semibold text-primary truncate">{link.label}</div>
                                                                     <div className="text-xs text-muted-foreground truncate">{link.desc}</div>
                                                                 </div>
-                                                            </a>
+                                                            </Link>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -214,12 +225,13 @@ export default function Header() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <a
+                    <Link
                         className="items-center justify-center gap-2 whitespace-nowrap text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hidden sm:inline-flex rounded-full bg-accent text-accent-foreground hover:bg-accent-glow shadow-cta cta-pulse h-10 px-5 font-semibold"
-                        href="/donate"
+                        to="/donate"
+                        onClick={closeAllMenus}
                     >
                         <Heart aria-hidden="true" /> Donate
-                    </a>
+                    </Link>
                     <button
                         type="button"
                         className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
@@ -261,20 +273,25 @@ export default function Header() {
                                 <div className="overflow-hidden">
                                     <ul className="px-2 pb-3 flex flex-col gap-1">
                                         <li>
-                                            <a className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold text-primary hover:bg-secondary" href={item.href}>
+                                            <Link
+                                                className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold text-primary hover:bg-secondary"
+                                                to={item.href}
+                                                onClick={closeAllMenus}
+                                            >
                                                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                                                 Overview
-                                            </a>
+                                            </Link>
                                         </li>
                                         {item.links.map((link) => (
                                             <li key={link.label}>
-                                                <a
+                                                <Link
                                                     className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-foreground/85 hover:bg-secondary hover:text-primary"
-                                                    href={link.href}
+                                                    to={link.href}
+                                                    onClick={closeAllMenus}
                                                 >
                                                     <link.icon className="h-4 w-4 text-accent shrink-0" aria-hidden="true" />
                                                     {link.label}
-                                                </a>
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -283,12 +300,13 @@ export default function Header() {
                         </li>
                     ))}
                     <li className="pt-1">
-                        <a
+                        <Link
                             className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 px-4 py-2 w-full rounded-full bg-accent text-accent-foreground hover:bg-accent-glow shadow-cta h-11 font-semibold"
-                            href="/donate"
+                            to="/donate"
+                            onClick={closeAllMenus}
                         >
                             <Heart aria-hidden="true" /> Donate Now
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>

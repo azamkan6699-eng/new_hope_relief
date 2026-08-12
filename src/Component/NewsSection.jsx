@@ -1,4 +1,5 @@
 import { ArrowUpRight, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const NEWS_ITEMS = [
     {
@@ -46,20 +47,20 @@ export default function NewsSection() {
                             Recent campaigns, stories, and reports from the communities we serve.
                         </p>
                     </div>
-                    <a
-                        href="/news"
+                    <Link
+                        to="/news"
                         className="group inline-flex items-center gap-2 self-start sm:self-auto rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground hover:-translate-y-0.5"
                     >
                         All updates
                         <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-12" aria-hidden="true" />
-                    </a>
+                    </Link>
                 </div>
 
                 <ul className="mt-12 grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {NEWS_ITEMS.map((item) => (
                         <li key={item.title}>
-                            <a
-                                href="/news"
+                            <Link
+                                to="/news"
                                 className="group relative flex h-full flex-col overflow-hidden rounded-[20px] bg-card border border-border/60 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-capsule"
                             >
                                 <div
@@ -103,7 +104,7 @@ export default function NewsSection() {
                                         />
                                     </span>
                                 </div>
-                            </a>
+                            </Link>
                         </li>
                     ))}
                 </ul>

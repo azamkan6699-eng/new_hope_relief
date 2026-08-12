@@ -1,9 +1,10 @@
 import treeImg from '../assets/about-tree.png'
+
 const CHECK_ITEMS = [
-    'Rooted in Islamic values',
-    'Direct, dignified delivery',
-    'Verified field operations',
-    'Transparent reporting',
+    'Food aid & clean water projects',
+    'Orphan & teacher sponsorship',
+    'Educational & medical assistance',
+    'Direct, accountable relief',
 ];
 
 function CheckIcon() {
@@ -47,11 +48,11 @@ export default function FaithAction() {
                             Faith In Action
                         </h2>
                         <p className="mt-5 text-base sm:text-lg leading-relaxed text-muted-foreground max-w-xl">
-                            New Hope Relief is an Islamic charity dedicated to serving vulnerable families through{' '}
-                            <em className="font-display not-italic text-primary/90">sadaqah</em>,
-                            <em className="font-display not-italic text-primary/90"> zakat</em>, compassion, and{' '}
-                            <em className="font-display not-italic text-primary/90">amanah</em>. We provide direct relief with
-                            dignity and accountability.
+                            NHR is an aid and development charity dedicated to serving those most in need,
+                            wherever they may be. We provide humanitarian assistance, support community
+                            development, and help create lasting change for individuals and families facing
+                            hardship — because everyone deserves access to basic necessities, education,
+                            healthcare, and the opportunity to build a better future.
                         </p>
                         <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {CHECK_ITEMS.map((item) => (
@@ -66,6 +67,11 @@ export default function FaithAction() {
                                 </li>
                             ))}
                         </ul>
+                        <p className="mt-6 text-sm leading-relaxed text-muted-foreground max-w-xl">
+                            NHR currently supports 10 educational institutions, including our flagship project
+                            in Swat, Pakistan — Jamia Darul Uloom Swat and Jamia Public High School — helping
+                            young people build the knowledge, values, and skills to benefit their communities.
+                        </p>
                     </div>
                 </div>
             </div>

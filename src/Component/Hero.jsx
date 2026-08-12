@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Heart, ArrowRight, ShieldCheck, Truck, Users } from 'lucide-react';
 import heroImg from '../assets/hero-relief.png'
 
@@ -38,20 +39,20 @@ export default function Hero() {
                             and values rooted in <em className="font-display not-italic text-primary/90">amanah</em> and mercy.
                         </p>
                         <div id="donate" className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                            <a
+                            <Link
                                 className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cta-pulse h-14 rounded-full bg-accent text-accent-foreground hover:bg-accent-glow shadow-cta px-7 text-base font-semibold transition-transform hover:-translate-y-0.5"
-                                href="/donate"
+                                to="/donate"
                             >
                                 <Heart className="h-5 w-5" aria-hidden="true" />
                                 Donate Now
-                            </a>
-                            <a
-                                className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border hover:text-accent-foreground h-14 rounded-full border-primary/20 bg-card/60 backdrop-blur px-7 text-base font-semibold text-primary hover:bg-secondary transition-transform hover:-translate-y-0.5"
-                                href="/impact"
+                            </Link>
+                            <Link
+                                className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border hover:text-black h-14 rounded-full border-primary/20 bg-card/60 backdrop-blur px-7 text-base font-semibold text-primary hover:bg-secondary transition-transform hover:-translate-y-0.5"
+                                to="/impact"
                             >
                                 View Impact
-                                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                            </a>
+                                <ArrowRight className="h-4 w-4 text-black" aria-hidden="true" />
+                            </Link>
                         </div>
                         <ul className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                             <li className="flex items-center gap-3 rounded-2xl bg-card/70 backdrop-blur px-4 py-3 shadow-soft border border-border/60">

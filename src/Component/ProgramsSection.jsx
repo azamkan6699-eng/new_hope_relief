@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const PROGRAMS = [
     {
@@ -137,9 +138,9 @@ export default function ProgramsSection() {
                                 </div>
                             </div>
 
-                            <a
+                            <Link
                                 className="relative mt-6 flex items-center justify-between border-t border-border/60 pt-5"
-                                href={program.href}
+                                to={program.href}
                             >
                                 <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                     Learn more
@@ -147,7 +148,7 @@ export default function ProgramsSection() {
                                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-primary transition-all duration-300 group-hover:translate-x-1 group-hover:bg-accent group-hover:text-accent-foreground">
                                     <ArrowRight className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
                                 </span>
-                            </a>
+                            </Link>
                         </li>
                     ))}
                 </ul>

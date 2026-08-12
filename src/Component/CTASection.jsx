@@ -1,4 +1,5 @@
 import { Heart, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function CTASection() {
     return (
@@ -69,20 +70,20 @@ export default function CTASection() {
                         </p>
 
                         <div className="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
-                            <a
+                            <Link
                                 className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 cta-pulse h-14 rounded-full bg-accent text-accent-foreground hover:bg-accent-glow shadow-cta px-7 text-base font-semibold transition-transform hover:-translate-y-0.5"
-                                href="/donate"
+                                to="/donate"
                             >
                                 <Heart className="h-5 w-5" aria-hidden="true" />
                                 Donate Today
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border h-14 rounded-full border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary px-7 text-base font-semibold transition-transform hover:-translate-y-0.5"
-                                href="/impact"
+                                to="/impact"
                             >
                                 See Impact
                                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
