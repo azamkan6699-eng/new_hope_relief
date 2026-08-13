@@ -14,7 +14,7 @@ const NAV_LINKS = [
 
 const CONTACT_ITEMS = [
     { icon: Mail, content: 'Newhoperelief@gmail.com', href: 'mailto:hello@newhoperelief.org' },
-    { icon: Phone, content: '+44 (0) 123 456 7890', href: 'tel:+441234567890' },
+    { icon: Phone, content: '+44 7522 332328', href: 'tel:+441234567890' },
     { icon: MapPin, content: 'Burnley, Lancashire UK', href: null },
 ];
 

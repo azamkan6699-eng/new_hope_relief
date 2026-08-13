@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, ArrowRight, ShieldCheck, Truck, Users } from 'lucide-react';
 import heroImg from '../assets/hero-relief.png'
+import DonateModal from './DonateModal';
 
 export default function Hero() {
+    const [isDonateOpen, setIsDonateOpen] = useState(false);
+
     return (
         <section id="top" className="relative bg-hero overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-24 shadow-2xl">
             <div
@@ -39,13 +43,14 @@ export default function Hero() {
                             and values rooted in <em className="font-display not-italic text-primary/90">amanah</em> and mercy.
                         </p>
                         <div id="donate" className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                            <Link
+                            <button
+                                type="button"
+                                onClick={() => setIsDonateOpen(true)}
                                 className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cta-pulse h-14 rounded-full bg-accent text-accent-foreground hover:bg-accent-glow shadow-cta px-7 text-base font-semibold transition-transform hover:-translate-y-0.5"
-                                to="/donate"
                             >
                                 <Heart className="h-5 w-5" aria-hidden="true" />
                                 Donate Now
-                            </Link>
+                            </button>
                             <Link
                                 className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border hover:text-black h-14 rounded-full border-primary/20 bg-card/60 backdrop-blur px-7 text-base font-semibold text-primary hover:bg-secondary transition-transform hover:-translate-y-0.5"
                                 to="/impact"
@@ -114,6 +119,8 @@ export default function Hero() {
                     </div>
                 </div>
             </div>
+
+            <DonateModal isOpen={isDonateOpen} onClose={() => setIsDonateOpen(false)} />
         </section>
     );
 }
