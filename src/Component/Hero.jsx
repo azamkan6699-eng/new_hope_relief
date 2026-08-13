@@ -4,6 +4,7 @@ import { Heart, ArrowRight, ShieldCheck, Truck, Users } from 'lucide-react';
 import heroImg from '../assets/hero-relief.png'
 import DonateModal from './DonateModal';
 
+
 export default function Hero() {
     const [isDonateOpen, setIsDonateOpen] = useState(false);
 
