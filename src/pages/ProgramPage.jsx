@@ -3,10 +3,14 @@ import { CircleCheck } from 'lucide-react';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
 import programsData from '../data/programsData';
+import DonateModal from '../Component/DonateModal';
+import { useState } from 'react';
 
 export default function ProgramPage() {
     const { slug } = useParams();
     const program = programsData[slug];
+
+    const [isDonateOpen, setIsDonateOpen] = useState(false);
 
     // Unknown slug (bad link / typo) -> send to the programs listing instead of a blank page
     if (!program) {
@@ -90,12 +94,13 @@ export default function ProgramPage() {
                             </div>
 
                             <div className="mt-8 flex flex-wrap gap-4">
-                                <Link
+                                <button
                                     className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90"
-                                    to="/donate"
+                                     type="button"
+                                onClick={() => setIsDonateOpen(true)}
                                 >
                                     Donate Now
-                                </Link>
+                                </button>
                                 <Link
                                     className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-primary transition hover:bg-secondary"
                                     to="/programs"
@@ -123,8 +128,10 @@ export default function ProgramPage() {
                         </div>
                     </div>
                 </div>
+                <DonateModal isOpen={isDonateOpen} onClose={() => setIsDonateOpen(false)} />
             </section>
             <Footer />
+
         </main>
     );
 }

@@ -25,6 +25,7 @@ import {
     Sparkles,
 } from 'lucide-react';
 import logoImg from '../assets/logo.png'
+import DonateModal from './DonateModal';
 
 const NAV_ITEMS = [
     {
@@ -102,6 +103,8 @@ export default function Header() {
     const [openDesktop, setOpenDesktop] = useState(null);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [mobileAccordion, setMobileAccordion] = useState(null);
+
+    const [isDonateOpen, setIsDonateOpen] = useState(false);
 
     // Called by every navigational Link so the mega menu / mobile menu
     // closes immediately on click, instead of waiting for onMouseLeave.
@@ -225,13 +228,13 @@ export default function Header() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <Link
+                    <button
                         className="items-center justify-center gap-2 whitespace-nowrap text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hidden sm:inline-flex rounded-full bg-accent text-accent-foreground hover:bg-accent-glow shadow-cta cta-pulse h-10 px-5 font-semibold"
-                        to="/donate"
-                        onClick={closeAllMenus}
+                        type="button"
+                        onClick={() => setIsDonateOpen(true)}
                     >
                         <Heart aria-hidden="true" /> Donate
-                    </Link>
+                    </button>
                     <button
                         type="button"
                         className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
@@ -310,6 +313,7 @@ export default function Header() {
                     </li>
                 </ul>
             </div>
+            <DonateModal isOpen={isDonateOpen} onClose={() => setIsDonateOpen(false)} />
         </header>
     );
 }

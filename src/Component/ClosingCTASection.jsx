@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 // Update this to wherever the photo lives in your project
 // (import from '../assets/...' if bundled, or a /public path string if served statically).
 import cityImg from '../assets/closing-city.png'
+import DonateModal from './DonateModal';
+import { useState } from 'react';
 
 
 export default function ClosingCTASection() {
+    const [isDonateOpen, setIsDonateOpen] = useState(false);
     return (
         <section className="relative isolate overflow-hidden">
             <img
@@ -40,13 +43,14 @@ export default function ClosingCTASection() {
                 </p>
 
                 <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
-                    <Link
+                    <button
                         className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 cta-pulse h-14 rounded-full bg-accent text-accent-foreground hover:bg-accent-glow shadow-cta px-7 text-base font-semibold transition-transform hover:-translate-y-0.5"
-                        to="/donate"
+                         type="button"
+                        onClick={() => setIsDonateOpen(true)}
                     >
                         <Heart className="h-5 w-5" aria-hidden="true" />
                         Donate Securely
-                    </Link>
+                    </button>
                     <Link
                         className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border h-14 rounded-full border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary px-7 text-base font-semibold transition-transform hover:-translate-y-0.5"
                         to="/donate"
@@ -56,6 +60,7 @@ export default function ClosingCTASection() {
                     </Link>
                 </div>
             </div>
+            <DonateModal isOpen={isDonateOpen} onClose={() => setIsDonateOpen(false)} />
         </section>
     );
 }

@@ -9,7 +9,7 @@ import Footer from '../Component/Footer';
 export default function Programs() {
     return (
         <>
-        <Header />
+            <Header />
             <main>
                 {/* ===== Hero ===== */}
                 <section className="relative overflow-hidden max-w-full bg-hero pt-24 sm:pt-28 pb-12 sm:pb-16">
@@ -50,10 +50,10 @@ export default function Programs() {
                         </p>
                     </div>
                 </section>
-                  <ProgramsSection />
-                  <CommunitiesServed />
-                  <ClosingCTASection />
-                              <Footer />
+                <ProgramsSection />
+                <CommunitiesServed />
+                <ClosingCTASection />
+                <Footer />
             </main>
         </>
     );

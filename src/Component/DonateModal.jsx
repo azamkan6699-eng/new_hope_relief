@@ -184,8 +184,6 @@ export default function DonateModal({ isOpen, onClose }) {
                             <span>{copied ? 'Copied all details' : 'Copy all details'}</span>
                         </button>
                     </div>
-
-                    
                 </div>
             </div>
         </div>
