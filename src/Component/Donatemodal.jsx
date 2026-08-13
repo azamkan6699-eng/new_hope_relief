@@ -205,9 +205,9 @@ export default function DonateModal({ isOpen, onClose }) {
                         <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
                             <ShieldCheck className="h-4.5 w-4.5" aria-hidden="true" />
                         </span>
-                        <span className="text-sm font-medium text-foreground/85">
+                        {/* <span className="text-sm font-medium text-foreground/85">
                             Registered UK charity · Reg. {BANK_DETAILS.charityReg}
-                        </span>
+                        </span> */}
                     </div>
                 </div>
             </div>
