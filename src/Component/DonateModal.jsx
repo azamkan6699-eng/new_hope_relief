@@ -11,17 +11,50 @@ const BANK_DETAILS = {
     charityReg: '1121099',
 };
 
-function CopyField({ label, value, large = false }) {
+// Plain text block used for the single "copy all" action
+const COPY_ALL_TEXT = `Bank: ${BANK_DETAILS.bank}
+Account Name: ${BANK_DETAILS.accountName}
+Account Number: ${BANK_DETAILS.accountNumber}
+Sort Code: ${BANK_DETAILS.sortCode}`;
+
+function DetailRow({ label, value, large = false }) {
+    return (
+        <div
+            className={
+                large
+                    ? 'rounded-2xl border-2 border-accent/30 bg-accent/[0.06] px-4 py-3.5 sm:px-5 sm:py-4'
+                    : 'flex items-center justify-between gap-3 rounded-xl border border-border/60 bg-secondary/50 px-4 py-3'
+            }
+        >
+            {large ? (
+                <div className="min-w-0">
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-accent">{label}</p>
+                    <p className="mt-1 font-display text-2xl sm:text-3xl font-semibold tracking-wide text-primary tabular-nums truncate">
+                        {value}
+                    </p>
+                </div>
+            ) : (
+                <div className="min-w-0">
+                    <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">{label}</p>
+                    <p className="mt-0.5 font-display text-base font-semibold text-primary tabular-nums truncate">{value}</p>
+                </div>
+            )}
+        </div>
+    );
+}
+
+export default function DonateModal({ isOpen, onClose }) {
+    const panelRef = useRef(null);
     const [copied, setCopied] = useState(false);
     const timeoutRef = useRef(null);
 
-    const handleCopy = async () => {
+    const handleCopyAll = async () => {
         try {
-            await navigator.clipboard.writeText(value);
+            await navigator.clipboard.writeText(COPY_ALL_TEXT);
         } catch {
             // Fallback for browsers without Clipboard API access (e.g. insecure context)
             const textarea = document.createElement('textarea');
-            textarea.value = value;
+            textarea.value = COPY_ALL_TEXT;
             textarea.style.position = 'fixed';
             textarea.style.opacity = '0';
             document.body.appendChild(textarea);
@@ -30,7 +63,7 @@ function CopyField({ label, value, large = false }) {
             try {
                 document.execCommand('copy');
             } catch {
-                // Silently ignore — the value is still visible for manual copy
+                // Silently ignore — the values are still visible for manual copy
             }
             document.body.removeChild(textarea);
         }
@@ -39,57 +72,6 @@ function CopyField({ label, value, large = false }) {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(() => setCopied(false), 2000);
     };
-
-    useEffect(() => () => timeoutRef.current && clearTimeout(timeoutRef.current), []);
-
-    return (
-        <div
-            className={
-                large
-                    ? 'relative overflow-hidden rounded-2xl border-2 border-accent/30 bg-accent/[0.06] px-4 py-3.5 sm:px-5 sm:py-4'
-                    : 'flex items-center justify-between gap-3 rounded-xl border border-border/60 bg-secondary/50 px-4 py-3'
-            }
-        >
-            {large ? (
-                <div className="flex items-center justify-between gap-3 min-w-0">
-                    <div className="min-w-0">
-                        <p className="text-[11px] font-semibold uppercase tracking-wider text-accent">{label}</p>
-                        <p className="mt-1 font-display text-2xl sm:text-3xl font-semibold tracking-wide text-primary tabular-nums truncate">
-                            {value}
-                        </p>
-                    </div>
-                    <button
-                        type="button"
-                        onClick={handleCopy}
-                        aria-label={`Copy ${label}`}
-                        className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-accent px-3.5 py-2.5 sm:px-4 text-xs sm:text-sm font-semibold text-accent-foreground shadow-cta transition-all hover:bg-accent-glow hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    >
-                        {copied ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
-                        <span>{copied ? 'Copied' : 'Copy'}</span>
-                    </button>
-                </div>
-            ) : (
-                <>
-                    <div className="min-w-0">
-                        <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">{label}</p>
-                        <p className="mt-0.5 font-display text-base font-semibold text-primary tabular-nums truncate">{value}</p>
-                    </div>
-                    <button
-                        type="button"
-                        onClick={handleCopy}
-                        aria-label={`Copy ${label}`}
-                        className="inline-flex shrink-0 items-center justify-center h-9 w-9 rounded-full border border-border/60 bg-card text-primary transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    >
-                        {copied ? <Check className="h-4 w-4 text-accent" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
-                    </button>
-                </>
-            )}
-        </div>
-    );
-}
-
-export default function DonateModal({ isOpen, onClose }) {
-    const panelRef = useRef(null);
 
     // Lock background scroll and support Escape-to-close while open
     useEffect(() => {
@@ -112,6 +94,8 @@ export default function DonateModal({ isOpen, onClose }) {
         };
     }, [isOpen, onClose]);
 
+    useEffect(() => () => timeoutRef.current && clearTimeout(timeoutRef.current), []);
+
     if (!isOpen) return null;
 
     return (
@@ -129,12 +113,6 @@ export default function DonateModal({ isOpen, onClose }) {
                 style={{ animationDuration: '200ms' }}
             />
 
-            {/*
-              Panel: overflow-hidden here is the key fix. It clips the decorative
-              glow blob (which is intentionally positioned outside the box) so it
-              can never push out a horizontal scrollbar. All actual scrolling is
-              delegated to the inner content div below, on the y-axis only.
-            */}
             <div
                 ref={panelRef}
                 tabIndex={-1}
@@ -190,25 +168,24 @@ export default function DonateModal({ isOpen, onClose }) {
                         </div>
 
                         <div className="space-y-3">
-                            <CopyField label="Bank" value={BANK_DETAILS.bank} />
-                            <CopyField label="Account Name" value={BANK_DETAILS.accountName} />
-
-                            {/* Account number — the primary, most prominent field */}
-                            <CopyField label="Account Number" value={BANK_DETAILS.accountNumber} large />
-
-                            <CopyField label="Sort Code" value={BANK_DETAILS.sortCode} />
+                            <DetailRow label="Bank" value={BANK_DETAILS.bank} />
+                            <DetailRow label="Account Name" value={BANK_DETAILS.accountName} />
+                            <DetailRow label="Account Number" value={BANK_DETAILS.accountNumber} large />
+                            <DetailRow label="Sort Code" value={BANK_DETAILS.sortCode} />
                         </div>
+
+                        {/* Single copy-all action */}
+                        <button
+                            type="button"
+                            onClick={handleCopyAll}
+                            className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-semibold text-accent-foreground shadow-cta transition-all hover:bg-accent-glow hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        >
+                            {copied ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
+                            <span>{copied ? 'Copied all details' : 'Copy all details'}</span>
+                        </button>
                     </div>
 
-                    {/* Reassurance footer, echoing the Hero's trust badges */}
-                    <div className="mt-6 flex items-center gap-3 rounded-2xl bg-card/70 backdrop-blur px-4 py-3 shadow-soft border border-border/60">
-                        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
-                            <ShieldCheck className="h-4.5 w-4.5" aria-hidden="true" />
-                        </span>
-                        {/* <span className="text-sm font-medium text-foreground/85">
-                            Registered UK charity · Reg. {BANK_DETAILS.charityReg}
-                        </span> */}
-                    </div>
+                    
                 </div>
             </div>
         </div>
